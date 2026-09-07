@@ -39,6 +39,7 @@ bool errorSensorCisternaReportado = false;
 
 void mostrarDistanciaSiCambio(int distancia);
 void mostrarEstadoSiCambio(int estado, const char *mensaje);
+void notificarCisternaAl20PorCiento();
 
 
 // ======================================================
@@ -270,6 +271,8 @@ void controlarMotor()
   {
     mostrarEstadoSiCambio(3, "Cisterna llego al 20%: deteniendo motor para proteger la reserva");
 
+    notificarCisternaAl20PorCiento();
+
     apagarMotor();
 
     return;
@@ -281,6 +284,18 @@ void controlarMotor()
   // -----------------------------------------
 
   evaluarCaudal();
+}
+
+
+// ======================================================
+// NOTIFICAR A LA PRIMERA INSTANCIA
+// ======================================================
+
+void notificarCisternaAl20PorCiento()
+{
+  // Esta línea es el comando que recibe la primera instancia.
+  Serial.println("tanque_cisterna_lleno");
+  Serial.println("Mensaje enviado a primera instancia: tanque_cisterna_lleno");
 }
 
 
